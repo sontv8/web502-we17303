@@ -54,3 +54,12 @@ const sum: ISumFunction = (a, b) => {
     return "12"
 }
 sum(10, 20)
+
+interface IGetProductFunc {
+    (data: IProject[]): {}
+}
+const getProduct: IGetProductFunc = (data) => {
+    return data
+}
+getProduct([{ id: 1, name: "abc" }, { id: 2, name: "abc" }])
+
