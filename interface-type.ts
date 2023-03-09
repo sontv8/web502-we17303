@@ -1,4 +1,4 @@
-
+export { }
 
 
 // định nghĩa kiểu dữ liệu với interface
@@ -40,10 +40,10 @@ interface IProject {
 //     { id: 2, name: "Du an 2" }
 // ]
 
-const projectList: Array<IProject> = [
-    { id: 1, name: "Du an 1" },
-    { id: 2, name: "123" }
-]
+// const projectList: Array<IProject> = [
+//     { id: 1, name: "Du an 1" },
+//     { id: 2, name: "123" }
+// ]
 
 /* Function*/
 interface ISumFunction {
@@ -63,3 +63,19 @@ const getProduct: IGetProductFunc = (data) => {
 }
 getProduct([{ id: 1, name: "abc" }, { id: 2, name: "abc" }])
 
+// định nghĩa kiểu dữ liệu với type
+/* Object */
+type TProduct = {
+    id: number,
+    name: string
+}
+const product: TProduct = {
+    id: 1,
+    name: "abc"
+}
+/* Array */
+type TProductList = TProduct[]
+const projectList: TProductList = [
+    { id: 1, name: "abc" }
+]
+/* Function */ 
