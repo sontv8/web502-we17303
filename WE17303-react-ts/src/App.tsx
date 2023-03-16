@@ -1,38 +1,30 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import './App.css'
+import HomePage from './pages/HomePage'
+import ProductPage from './pages/Product'
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [products, setProducts] = useState([])
-
-  const increment = () => {
-    setCount(count + 1)
-  }
+  const [products, setProduct] = useState([])
   useEffect(() => {
     fetch('http://localhost:3000/products')
       .then(response => response.json())
-      .then(data => setProducts(data))
-  }, []);
-
-  const removeItem = (id) => {
-    fetch('http://localhost:3000/products/' + id, {
-      method: "DELETE"
-    })
-      .then((response) => response.json())
-      .then(() => {
-        setProducts(products.filter(item => item.id !== id))
-      })
-  }
+      .then(data => setProduct(data))
+  }, [])
   return (
     <div className="App">
-      {count}
-      <button onClick={increment}>Increment</button>
-      <hr />
-      {products.map(item => (
-        <div key={item.id}>{item.name}
-          <button onClick={() => removeItem(item.id)}>Remove</button></div>
-      ))}
+      {/* 
+        / - Homepage
+        /products - Product Page
+        /products/:id - Detail
+      */}
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/products' element={<ProductPage products={products} />} />
+        </Routes>
+      </BrowserRouter>
+
     </div>
   )
 }
