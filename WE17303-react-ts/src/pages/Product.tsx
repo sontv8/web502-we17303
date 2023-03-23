@@ -1,9 +1,9 @@
 
 
-const ProductPage = (props) => {
+const ProductPage = (props) => { // nhận props từ App.tsx
 
-    const removeProduct = (id) => {
-        props.onRemove(id)
+    const removeProduct = (id) => { // hàm xử lý sự kiện khi click vào nút remove
+        props.onRemove(id) // gọi hàm onRemove từ props truyền vào
     }
     return (
         <div>

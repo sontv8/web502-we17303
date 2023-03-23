@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const AddProductPage = (props) => {
+const AddProductPage = (props) => { // nhận props từ App.tsx 
     // props - onAdd
-    const navigate = useNavigate()
-    const [inputValue, setInputValue] = useState({})
-    const onHandleChange = (e) => {
-        setInputValue({ name: e.target.value });
+    const navigate = useNavigate() // khởi tạo navigate để điều hướng
+    const [inputValue, setInputValue] = useState({}) // khởi tạo state để lưu giá trị input
+    const onHandleChange = (e) => { // hàm xử lý sự kiện khi input thay đổi
+        setInputValue({ name: e.target.value }); // set giá trị cho state
 
     }
-    const onHandleSubmit = (e) => {
+    const onHandleSubmit = (e) => { // hàm xử lý sự kiện khi submit form
         e.preventDefault()
-        props.onAdd(inputValue);
-        navigate('/admin/products')
+        props.onAdd(inputValue); // gọi hàm onAdd từ props truyền vào
+        navigate('/admin/products') // điều hướng đến trang /admin/products
     }
     return (
         <div>
