@@ -7,7 +7,7 @@ const ProductDetailPage = (props) => {
     const [product, setProduct] = useState({})
     useEffect(() => {
         setProduct(props.products.find(product => product.id == id))
-    }, [props])
+    })
     return (
         <div>
             <h1>Product Detail</h1>

@@ -7,7 +7,8 @@ import ProductDetailPage from './pages/ProductDetail'
 import Dashboard from './pages/admin/Dashboard'
 import ProductManagementPage from './pages/admin/ProductManagement'
 import AddProductPage from './pages/admin/AddProduct'
-import { addProduct } from './api/product'
+import { addProduct, updateProduct } from './api/product'
+import UpdateProductPage from './pages/admin/UpdateProduct'
 
 function App() {
   const [products, setProduct] = useState([])
@@ -26,6 +27,9 @@ function App() {
   const onHandleAdd = (product) => {
     addProduct(product)
   }
+  const onHandleUpdate = (product) => { // hàm xử lý khi submit form update
+    updateProduct(product).then(() => setProduct(products.map(item => item.id == product.id ? product : item)))
+  }
   return (
     <div className="App">
       {/* 
@@ -41,6 +45,7 @@ function App() {
           <Route path='/admin' element={<Dashboard />} />
           <Route path='/admin/products' element={<ProductManagementPage />} />
           <Route path='/admin/products/add' element={<AddProductPage onAdd={onHandleAdd} />} />
+          <Route path='/admin/products/:id/update' element={<UpdateProductPage onUpdate={onHandleUpdate} />} />
         </Routes>
       </BrowserRouter>
 
