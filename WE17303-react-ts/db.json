@@ -16,6 +16,11 @@
       "name": "abcd",
       "price": "400",
       "id": 4
+    },
+    {
+      "name": "New Product 100 updated 2",
+      "price": "2",
+      "id": 5
     }
   ]
 }
