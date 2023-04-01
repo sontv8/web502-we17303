@@ -53,7 +53,7 @@ function App() {
           <Route path='/admin' element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             <Route path='products' >
-              <Route index element={<ProductManagementPage />} />
+              <Route index element={<ProductManagementPage products={products} />} />
               <Route path='add' element={<AddProductPage onAdd={onHandleAdd} />} />
               <Route path=':id/update' element={<UpdateProductPage onUpdate={onHandleUpdate} products={products} />} />
             </Route>
