@@ -21,6 +21,11 @@
       "name": "New Product 100 updated 2",
       "price": "2",
       "id": 5
+    },
+    {
+      "name": "New Product 1000",
+      "price": "1000",
+      "id": 6
     }
   ]
 }
