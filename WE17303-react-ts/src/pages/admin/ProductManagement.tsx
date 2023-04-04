@@ -1,24 +1,24 @@
 import React from 'react'
-import { Space, Table, Tag, Button } from 'antd';
+import { Space, Table, Button } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import { IProduct } from '../../types/product';
 import { Link } from 'react-router-dom'
 
-const ProductManagementPage = (props) => {
-    const data = props.products.map(item => {
-        return {
-            key: item.id,
-            name: item.name,
-            price: item.price
-        }
-    })
-    interface DataType {
-        key: string;
-        name: string;
-        age: number;
-        address: string;
-        tags: string[];
-    }
+interface DataType {
+    key: string | number;
+    id: number;
+    name: string;
+    price: number;
+}
+interface IProps {
+    products: IProduct[],
+    onRemove: (id: number) => void
+}
 
+const ProductManagementPage = (props: IProps) => {
+    const removeProduct = (id: number) => {
+        props.onRemove(id)
+    }
     const columns: ColumnsType<DataType> = [
         {
             title: 'Product Name',
@@ -37,37 +37,26 @@ const ProductManagementPage = (props) => {
             render: (record) => (
 
                 <Space size="middle">
-                    <Button type="primary">Remove</Button>
-                    <Button type="primary"><Link to={`/admin/products/${record.key}/update`}>Update</Link></Button>
+                    <Button type="primary" style={{ backgroundColor: 'red' }} onClick={() => removeProduct(record.id)}>Remove</Button>
+                    <Button type="primary" ><Link to={`/admin/products/${record.id}/update`}>Update</Link></Button>
                 </Space>
             ),
         },
     ];
 
-    // const data: DataType[] = [
-    //     {
-    //         key: '1',
-    //         name: 'John Brown',
-    //         age: 32,
-    //         address: 'New York No. 1 Lake Park',
-    //         tags: ['nice', 'developer'],
-    //     },
-    //     {
-    //         key: '2',
-    //         name: 'Jim Green',
-    //         age: 42,
-    //         address: 'London No. 1 Lake Park',
-    //         tags: ['loser'],
-    //     },
-    //     {
-    //         key: '3',
-    //         name: 'Joe Black',
-    //         age: 32,
-    //         address: 'Sydney No. 1 Lake Park',
-    //         tags: ['cool', 'teacher'],
-    //     },
-    // ];
-    return <Table columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
+    const data: DataType[] = props.products.map((item: IProduct) => {
+        return {
+            key: item.id,
+            ...item
+        }
+    })
+
+    return (
+        <div>
+            <Button type='primary'><Link to={'/admin/products/add'}>Add New Product</Link></Button>
+            <Table columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
+        </div>
+    )
 }
 
 export default ProductManagementPage

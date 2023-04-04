@@ -1,9 +1,5 @@
 import instance from "./instance";
-interface IProduct {
-    id: number,
-    name: string,
-    price: number
-}
+import { IProduct } from "../types/product";
 const getAllProduct = () => {
     return instance.get('/products');
 }

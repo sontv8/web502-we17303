@@ -1,7 +1,12 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import React from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form'
+import { IProduct } from '../../types/product';
 import { Button, Checkbox, Form, Input } from 'antd';
+import { useNavigate } from 'react-router-dom';
+
+interface IProps {
+    onAdd: (product: IProduct) => void
+}
 
 // const AddProductPage = (props) => { // nhận props từ App.tsx 
 //     // props - onAdd
@@ -35,11 +40,6 @@ import { Button, Checkbox, Form, Input } from 'antd';
 //     )
 // }
 
-interface IProduct {
-    id: number,
-    name: string,
-    price: number
-}
 interface IProps {
     onAdd: (product: IProduct) => void
 }
@@ -56,8 +56,10 @@ const AddProductPage = (props: IProps) => { // nhận props từ App.tsx
     //     navigate('/admin/products')
     // }
 
+
     const onFinish = (values: any) => {
         props.onAdd(values);
+        navigate('/admin/products')
     };
 
     const onFinishFailed = (errorInfo: any) => {
